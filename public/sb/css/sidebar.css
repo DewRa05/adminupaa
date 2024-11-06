@@ -1,0 +1,125 @@
+/* Latar belakang dan bayangan kotak sidebar */
+.sb-sidenav {
+    background-color: #f0f2f5;
+    /* Warna lebih terang untuk tampilan bersih */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-right: 1px solid #dcdde1;
+}
+
+/* Heading dalam sidebar */
+.sb-sidenav-menu-heading {
+    font-size: 0.85rem;
+    color: #555a64;
+    /* Warna abu-abu gelap untuk kesan serius */
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-top: 1.5rem;
+    padding: 0 15px;
+    letter-spacing: 1px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+    /* Efek bayangan lebih halus */
+}
+
+/* Link dalam sidebar */
+.nav-link {
+    color: #4a4e57;
+    /* Warna abu-abu untuk teks */
+    font-size: 0.95rem;
+    padding: 12px 20px;
+    transition: background-color 0.3s, color 0.3s;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Efek hover pada link */
+.nav-link:hover {
+    background-color: #dfe4ea;
+    /* Warna abu muda saat di-hover */
+    color: #343a40;
+    /* Warna teks lebih gelap saat di-hover */
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Ikon untuk setiap bagian */
+.sb-nav-link-icon {
+    color: #868e96;
+    /* Warna ikon lebih redup */
+    transition: color 0.3s;
+}
+
+/* Gaya link yang sedang aktif dan terlipat */
+.nav-link.collapsed .sb-nav-link-icon {
+    color: #3498db;
+    /* Warna biru saat terlipat */
+}
+
+/* Gaya link aktif */
+.nav-link.active {
+    /* Disamakan dengan hover */
+    background-color: #dfe4ea;
+    color: #343a40;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+    border-radius: 6px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Warna ikon dalam keadaan aktif */
+.nav-link.active .sb-nav-link-icon {
+    color: #343a40;
+    /* Ikon juga menjadi lebih gelap seperti saat hover */
+}
+
+/* Panah collapse dalam sidebar */
+.sb-sidenav-collapse-arrow {
+    margin-left: auto;
+    transition: transform 0.3s ease;
+}
+
+/* Rotasi panah saat diperluas */
+.sb-sidenav-collapse-arrow.rotate {
+    transform: rotate(180deg);
+}
+
+/* Styling untuk footer sidebar */
+.sb-sidenav-footer {
+    background-color: #ebeff2;
+    /* Footer sedikit lebih terang */
+    padding: 15px;
+    text-align: center;
+    font-size: 0.85rem;
+    color: #868e96;
+    border-top: 1px solid #dcdde1;
+    margin-top: auto;
+}
+
+/* Kustomisasi ukuran dan warna ikon */
+.sb-nav-link-icon i {
+    font-size: 1.2rem;
+    transition: color 0.3s;
+}
+
+/* Teks footer dan perbaikan kecil lainnya */
+.sb-sidenav-footer .small {
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: #555a64;
+}
+
+/* Keadaan hover dan fokus umum */
+.nav-link:focus,
+.nav-link:hover {
+    text-decoration: none;
+}
+
+/* Animasi lebih halus */
+* {
+    scroll-behavior: smooth;
+}
+
+/* Tambahan bayangan lembut untuk footer */
+.sb-sidenav-footer {
+    box-shadow: inset 0 -1px 2px rgba(0, 0, 0, 0.1);
+}

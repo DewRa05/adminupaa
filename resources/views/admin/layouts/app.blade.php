@@ -19,6 +19,9 @@
     <!-- Link ke file CSS DataTables dengan Bootstrap 5 -->
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.bootstrap5.css">
 
+    <!-- css sidebar -->
+    <link rel="stylesheet" href="{{ asset('sb/css/sidebar.css') }}">
+
     <!-- template sb -->
     <link href="{{ asset('sb/css/styles.css') }}" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -63,6 +66,11 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="{{ asset('./js/code.js') }}"></script>
     
+    <!-- script sidebar -->
+    <script src="{{ asset('sb/js/sidebar.js') }}">
+        < /scriptcrossorigin="anonymous">
+    </script>
+
     <!-- script template sb -->
     <script src="{{ asset('sb/js/scripts.js') }}">
         < /scriptcrossorigin="anonymous">

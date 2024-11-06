@@ -24,3 +24,32 @@ window.addEventListener('DOMContentLoaded', event => {
     }
 
 });
+
+$(document).ready(function() {
+    // Save collapse state when a section is opened
+    $('.collapse').on('shown.bs.collapse', function() {
+        var targetId = $(this).attr('id');
+        localStorage.setItem(targetId, 'show');
+    });
+
+    // Save collapse state when a section is closed
+    $('.collapse').on('hidden.bs.collapse', function() {
+        var targetId = $(this).attr('id');
+        localStorage.setItem(targetId, 'hide');
+    });
+
+    // Restore the collapse state on page load
+    $('.collapse').each(function() {
+        var targetId = $(this).attr('id');
+        if (localStorage.getItem(targetId) === 'show') {
+            $(this).addClass('show');
+        }
+    });
+
+    // Close all dropdowns when 'Dashboard' is clicked
+    $('.nav-link[href="{{ route('admin.dashboard') }}"]').on('click', function() {
+        $('.collapse').collapse('hide');
+    });
+});
+
+

@@ -2,7 +2,7 @@
 
     <!-- Navbar Brand -->
     <a class="navbar-brand ps-3 text-black d-flex align-items-center">
-        <img src="{{ asset('/img/16.png') }}" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
+        <img src="{{ asset('img/16.png') }}" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
         <small class="d-inline-block ms-2 fs-7 text-wrap" style="font-size: 10px;">
             Sistem Informasi Layanan Pelatihan <br> dan Uji Kompetensi
         </small>
@@ -22,7 +22,7 @@
     <!-- Navbar profile -->
     <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
         <li class="nav-item">
-            <a class="nav-link d-flex align-items-center" href="{{ route('admin.profile.index') }}">
+            <a class="nav-link d-flex align-items-center" href="#">
                 <!-- Admin Profile Image -->
                 <img src="{{ asset('img/user/admin' . Auth::user()->profile) }}" alt="Profile" width="30" height="30" class="rounded-circle me-2">
                 <!-- Admin Name -->
