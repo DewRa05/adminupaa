@@ -22,8 +22,8 @@ class Pelatihan extends Model
         'harga',
         'kuota',
         'pembimbing',
-        'lsp_id', // ID LSP
-        'kategori_id', // ID Kategori
+        'lsp_id', 
+        'kategori_id', 
         'gambar',
     ];
 
@@ -39,6 +39,10 @@ class Pelatihan extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class)->withPivot('bukti_pembayaran', 'status_pendaftaran')->withTimestamps();
+        return $this->belongsToMany(User::class);
+    }
+    public function pelatihanuser()
+    {
+        return $this->belongsToMany(PelatihanUser::class);
     }
 }

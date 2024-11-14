@@ -66,11 +66,6 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="{{ asset('./js/code.js') }}"></script>
     
-    <!-- script sidebar -->
-    <script src="{{ asset('sb/js/sidebar.js') }}">
-        < /scriptcrossorigin="anonymous">
-    </script>
-
     <!-- script template sb -->
     <script src="{{ asset('sb/js/scripts.js') }}">
         < /scriptcrossorigin="anonymous">

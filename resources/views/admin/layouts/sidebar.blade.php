@@ -3,7 +3,7 @@
         <div class="sb-sidenav-menu">
             <div class="nav">
 
-                <!-- Core dashboars -->
+                <!-- Core Dashboard -->
                 <div class="sb-sidenav-menu-heading">Core</div>
                 <a class="nav-link {{ request()->is('admin/dashboard') ? 'active' : '' }}"
                     href="{{ route('admin.dashboard') }}">
@@ -13,73 +13,56 @@
 
                 <!-- Akun User Section -->
                 <div class="sb-sidenav-menu-heading">Akun User</div>
-                <a class="nav-link collapsed"
-                    data-bs-toggle="collapse" data-bs-target="#user"
-                    aria-expanded="false" aria-controls="user">
-                    <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
-                    User
-                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                <a class="nav-link {{ request()->is('admin/dosen*') ? 'active' : '' }}" href="charts.html">
+                    <div class="sb-nav-link-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                    Dosen
                 </a>
-                <div class="collapse {{ request()->is('admin/user*') ? 'show' : '' }}" id="user"
-                    aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                    <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link {{ request()->is('admin/dosen*') ? 'active' : '' }}"
-                            href="#">Dosen</a>
-                        <a class="nav-link {{ request()->is('admin/mahasiswa*') ? 'active' : '' }}"
-                            href="#">Mahasiswa</a>
-                        <a class="nav-link {{ request()->is('admin/umum*') ? 'active' : '' }}" href="#">Umum</a>
-                    </nav>
-                </div>
+                <a class="nav-link {{ request()->is('admin/mahasiswa*') ? 'active' : '' }}" href="charts.html">
+                    <div class="sb-nav-link-icon"><i class="fas fa-user-graduate"></i></div>
+                    Mahasiswa
+                </a>
+                <a class="nav-link {{ request()->is('admin/umum*') ? 'active' : '' }}" href="charts.html">
+                    <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                    Umum
+                </a>
 
                 <!-- Akademik Section -->
                 <div class="sb-sidenav-menu-heading">Akademik</div>
-                <a class="nav-link collapsed" data-bs-toggle="collapse" data-bs-target="#akademik" aria-expanded="false"
-                    aria-controls="akademik">
-                    <div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>
-                    Akademik
-                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                <a class="nav-link {{ request()->is('admin/jurusan*') ? 'active' : '' }}" href="{{ route('admin.jurusan.index') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-building"></i></div>
+                    Jurusan
                 </a>
-                <div class="collapse" id="akademik" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                    <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link {{ request()->is('admin/jurusan*') ? 'active' : '' }}"
-                            href="#">Jurusan</a>
-                        <a class="nav-link {{ request()->is('admin/kelas*') ? 'active' : '' }}"
-                            href="#">Kelas</a>
-                        <a class="nav-link {{ request()->is('admin/prodi*') ? 'active' : '' }}"
-                            href="#">Prodi</a>
-                    </nav>
-                </div>
+                <a class="nav-link {{ request()->is('admin/kelas*') ? 'active' : '' }}" href="{{ route('admin.kelas.index') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-chalkboard"></i></div>
+                    Kelas
+                </a>
+                <a class="nav-link {{ request()->is('admin/prodi*') ? 'active' : '' }}" href="{{ route('admin.prodi.index') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-school"></i></div>
+                    Prodi
+                </a>
 
                 <!-- Data Section -->
                 <div class="sb-sidenav-menu-heading">Data</div>
-                <a class="nav-link" href="charts.html">
-                    <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                    Grafik
-                </a>
                 <a class="nav-link {{ request()->is('admin/lsp*') ? 'active' : '' }}"
-                    href="#">
+                    href="{{ route('admin.lsp.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-chart-bar"></i></div>
                     LSP
                 </a>
-                <a class="nav-link collapsed {{ request()->is('admin/kategori*') || request()->is('admin/pelatihan*') ? 'show' : '' }}"
-                    data-bs-toggle="collapse" data-bs-target="#pelatihan" aria-expanded="false"
-                    aria-controls="pelatihan">
-                    <div class="sb-nav-link-icon"><i class="fas fa-chalkboard-teacher"></i></div>
-                    Pelatihan
-                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                </a>
-                <div class="collapse {{ request()->is('admin/kategori*') || request()->is('admin/pelatihan*') ? 'show' : '' }}"
-                    id="pelatihan" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                    <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link {{ request()->is('admin/kategori*') ? 'active' : '' }}"
-                            href="#">Kategori Pelatihan</a>
-                        <a class="nav-link {{ request()->is('admin/pelatihan*') ? 'active' : '' }}"
-                            href="#">List Pelatihan</a>
-                    </nav>
-                </div>
-                <a class="nav-link {{ request()->is('admin/sertifikat*') ? 'active' : '' }}" href="#">
+                <a class="nav-link {{ request()->is('admin/sertifikat*') ? 'active' : '' }}"
+                    href="{{ route('admin.sertifikat.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-award"></i></div>
                     Sertifikat
+                </a>
+
+                <!-- Pelatihan Section -->
+                <div class="sb-sidenav-menu-heading">Pelatihan</div>
+                <a class="nav-link {{ request()->is('admin/kategori*') ? 'active' : '' }}" href="{{ route('admin.kategori.index') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-list-alt"></i></div>
+                    Kategori
+                </a>
+                <a class="nav-link {{ request()->is('admin/pelatihan*') ? 'active' : '' }}" href="{{ route('admin.pelatihan.index') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>
+                    List Pelatihan
                 </a>
 
                 <!-- Settings Section -->
@@ -92,10 +75,39 @@
         </div>
         <div class="sb-sidenav-footer">
             <div class="small">Logged in as:</div>
-            Start Bootstrap
+            <span>{{ Auth::user()->nama }}</span>
         </div>
     </nav>
 </div>
 
+<script>
+    $(document).ready(function() {
+        // Toggle and save collapse state
+        $('.collapse').on('shown.bs.collapse', function() {
+            var targetId = $(this).attr('id');
+            localStorage.setItem(targetId, 'show');
+        }).on('hidden.bs.collapse', function() {
+            var targetId = $(this).attr('id');
+            localStorage.setItem(targetId, 'hide');
+        });
 
+        // Restore collapse state
+        $('.collapse').each(function() {
+            var targetId = $(this).attr('id');
+            if (localStorage.getItem(targetId) === 'show') {
+                $(this).collapse('show');
+            } else {
+                $(this).collapse('hide');
+            }
+        });
 
+        // Close all dropdowns on Dashboard click
+        $('.nav-link[href="{{ route('admin.dashboard') }}"]').on('click', function() {
+            $('.collapse').collapse('hide');
+            $('.collapse').each(function() {
+                var targetId = $(this).attr('id');
+                localStorage.setItem(targetId, 'hide');
+            });
+        });
+    });
+</script>
