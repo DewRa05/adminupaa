@@ -40,7 +40,7 @@
                                 <div class="mb-3">
                                     <label for="gambar" class="form-label">Gambar Pelatihan</label>
                                     <div class="mb-3">
-                                        <img id="imagePreview" src="{{ asset('img/pelatihan/' . $pelatihan->gambar) }}"
+                                        <img id="imagePreview" src="{{ asset('img/pelatihan/gambar/' . $pelatihan->gambar) }}"
                                             alt="Gambar Pelatihan" style="max-width: 200px; max-height: 200px;">
                                             <!-- Display the name of the existing file if it exists -->
                                     </div>

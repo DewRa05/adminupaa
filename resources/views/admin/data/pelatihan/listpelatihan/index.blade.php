@@ -88,7 +88,7 @@
                             className: 'text-start',
                             render: function(data) {
                                 return data ?
-                                    `<img src="{{ asset('img/pelatihan') }}/${data}" alt="profile" style="max-width: 50px; max-height: 50px;">` :
+                                    `<img src="{{ asset('img/pelatihan/gambar') }}/${data}" alt="profile" style="max-width: 50px; max-height: 50px;">` :
                                     'No Image';
                             },
                             orderable: false,

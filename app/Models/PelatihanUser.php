@@ -18,8 +18,19 @@ class PelatihanUser extends Model
         'status_pendaftaran',
     ];
 
-    public function pelatihanuser()
+    /**
+     * Relasi ke model User
+     */
+    public function user()
     {
-        return $this->belongsToMany(PelatihanUser::class);
+        return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Relasi ke model Pelatihan
+     */
+    public function pelatihan()
+    {
+        return $this->belongsTo(Pelatihan::class);
     }
 }

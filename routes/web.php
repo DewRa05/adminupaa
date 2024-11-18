@@ -115,8 +115,8 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
     Route::get('pelatihan/edit/{id}', [PelatihanController::class, 'edit'])->name('admin.pelatihan.edit');
     Route::put('pelatihan/{id}', [PelatihanController::class, 'update'])->name('admin.pelatihan.update');
     Route::delete('pelatihan/{id}', [PelatihanController::class, 'destroy'])->name('admin.pelatihan.destroy');
-    Route::get('admin/pelatihan/{pelatihanId}/participants', [PelatihanController::class, 'getParticipants'])
-        ->name('admin.pelatihan.participants');
+    Route::get('pelatihan/{pelatihanId}/participants', [PelatihanController::class, 'getParticipants'])->name('admin.pelatihan.participants');
+    Route::post('pelatihan/update-status', [PelatihanController::class, 'updateStatus'])->name('admin.pelatihan.updateStatus');
 });
 
 //Sertifikat

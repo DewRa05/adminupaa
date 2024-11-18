@@ -82,17 +82,17 @@
                             searchable: false,
                             className: 'text-center',
                             render: function(data) {
-                                return `<a href="{{ asset('storage') }}/${data}" target="_blank" class="btn btn-success btn-sm text-white"><i class="fas fa-eye" style="color: white;"></i> Lihat</a>`;
+                                return `<a href="{{ url('') }}/${data}" target="_blank" class="btn btn-success btn-sm text-white"><i class="fas fa-eye" style="color: white;"></i> Lihat</a>`;
                             }
 
                         },
                         {
-                        data: 'action',
-                        name: 'action',
-                        orderable: false,
-                        searchable: false,
-                        className: 'text-center'
-                    }
+                            data: 'action',
+                            name: 'action',
+                            orderable: false,
+                            searchable: false,
+                            className: 'text-center'
+                        }
                     ]
                 });
 

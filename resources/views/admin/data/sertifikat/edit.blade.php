@@ -83,7 +83,7 @@
                                     <label for="sertifikat_file" class="form-label">File Sertifikat (Optional)</label>
                                     <input type="file" class="form-control" name="sertifikat_file" id="sertifikat_file">
                                     @if ($sertifikat->sertifikat_file)
-                                        <p>File: <a href="{{ asset('storage/' . $sertifikat->sertifikat_file) }}"
+                                        <p>File: <a href="{{ asset('' . $sertifikat->sertifikat_file) }}"
                                                 target="_blank">View File</a></p>
                                     @endif
                                     @error('sertifikat_file')

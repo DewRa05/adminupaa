@@ -73,8 +73,8 @@ class User extends Authenticatable
         return $this->belongsToMany(Pelatihan::class)->withPivot('bukti_pembayaran', 'status_pendaftaran')->withTimestamps();
     }
 
-    public function sertifikats()
+    public function sertifikat()
     {
-        return $this->hasMany(Sertifikat::class);
+        return $this->hasMany(Sertifikat::class, 'user_id', 'id');
     }
 }

@@ -22,8 +22,8 @@ class Pelatihan extends Model
         'harga',
         'kuota',
         'pembimbing',
-        'lsp_id', 
-        'kategori_id', 
+        'lsp_id',
+        'kategori_id',
         'gambar',
     ];
 
@@ -44,5 +44,9 @@ class Pelatihan extends Model
     public function pelatihanuser()
     {
         return $this->belongsToMany(PelatihanUser::class);
+    }
+    public function participants()
+    {
+        return $this->hasMany(PelatihanUser::class, 'pelatihan_id');
     }
 }

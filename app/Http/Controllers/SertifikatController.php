@@ -22,6 +22,13 @@ class SertifikatController extends Controller
                 $query->where('id', $request->sertifikat_id);
             }
 
+            // Filter by role if provided
+            if ($request->has('role') && $request->role != '') {
+                $query->whereHas('user', function ($q) use ($request) {
+                    $q->where('role', $request->role);
+                });
+            }
+
             return DataTables::of($query)
                 ->addColumn('user_nama', function ($row) {
                     $user = $row->user; // Access the user associated with the certificate
@@ -57,11 +64,11 @@ class SertifikatController extends Controller
                     $deleteUrl = route('admin.sertifikat.destroy', ['userId' => $userId, 'id' => $row->id]);
 
                     return '
-                    <a href="' . $editUrl . '" class="btn btn-sm btn-primary">Edit</a>
+                    <a href="' . $editUrl . '" class="btn btn-sm btn-primary"  data-id="' . $row->id . '">Edit</a>
                     <form action="' . $deleteUrl . '" method="POST" style="display:inline;" onsubmit="return confirm(\'Are you sure you want to delete this item?\');">
                         ' . csrf_field() . '
                         <input type="hidden" name="_method" value="DELETE">
-                        <button type="submit" class="btn btn-sm btn-danger delete-button">Delete</button>
+                        <button type="submit" class="btn btn-sm btn-danger delete-button" data-id="' . $row->id . '">Delete</button>
                     </form>';
                 })
                 ->rawColumns(['action'])
@@ -93,16 +100,25 @@ class SertifikatController extends Controller
         $sertifikat = $request->except('sertifikat_file');
         $sertifikat['user_id'] = $userId;
 
+        // Cek apakah ada file sertifikat yang di-upload
         if ($request->hasFile('sertifikat_file')) {
             $file = $request->file('sertifikat_file');
-            $filePath = $file->store('sertifikat', 'public');
-            $sertifikat['sertifikat_file'] = $filePath;
+            $fileName = time() . '_' . $file->getClientOriginalName(); // Nama file unik
+            $filePath = public_path('sertifikat'); // Folder penyimpanan di public
+
+            // Pindahkan file ke folder public/sertifikat
+            $file->move($filePath, $fileName);
+
+            // Simpan path file yang baru
+            $sertifikat['sertifikat_file'] = 'sertifikat/' . $fileName;
         }
 
+        // Simpan data sertifikat ke database
         Sertifikat::create($sertifikat);
 
         return redirect()->route('admin.sertifikat.detail', $userId)->with('tambah_success', true);
     }
+
 
     public function edit($userId, $id)
     {
@@ -135,13 +151,20 @@ class SertifikatController extends Controller
         // Handle file upload if a new file is provided
         if ($request->hasFile('sertifikat_file')) {
             // Delete the old file if it exists
-            if ($sertifikat->sertifikat_file && Storage::disk('public')->exists($sertifikat->sertifikat_file)) {
-                Storage::disk('public')->delete($sertifikat->sertifikat_file);
+            if ($sertifikat->sertifikat_file && file_exists(public_path($sertifikat->sertifikat_file))) {
+                unlink(public_path($sertifikat->sertifikat_file)); // Menghapus file yang lama
             }
 
-            // Store the new file and update the file path in the data array
+            // Store the new file in public/sertifikat and update the file path in the data array
             $file = $request->file('sertifikat_file');
-            $data['sertifikat_file'] = $file->store('sertifikat', 'public');
+            $fileName = time() . '_' . $file->getClientOriginalName(); // Unique file name
+            $filePath = public_path('sertifikat'); // Target folder in public
+
+            // Move the file to public/sertifikat
+            $file->move($filePath, $fileName);
+
+            // Save the file path (relative to public folder)
+            $data['sertifikat_file'] = 'sertifikat/' . $fileName;
         }
 
         // Update the sertifikat with the new data
@@ -149,9 +172,8 @@ class SertifikatController extends Controller
 
         // Redirect with a success message
         return redirect()->route('admin.sertifikat.edit', ['userId' => $userId, 'id' => $sertifikat->id])
-                 ->with('edit_success', true);
+            ->with('edit_success', true);
     }
-
 
 
     public function destroy($id)
