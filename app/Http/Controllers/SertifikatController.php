@@ -14,8 +14,8 @@ class SertifikatController extends Controller
     {
         if ($request->ajax()) {
             $query = Sertifikat::with('user')
-                ->select('user_id') // Only select user_id, assuming this is the unique key for users
-                ->distinct(); // Ensure distinct users are returned
+                ->select('user_id') 
+                ->distinct(); 
 
             // Filter by sertifikat_id if provided
             if ($request->has('sertifikat_id')) {
@@ -31,16 +31,16 @@ class SertifikatController extends Controller
 
             return DataTables::of($query)
                 ->addColumn('user_nama', function ($row) {
-                    $user = $row->user; // Access the user associated with the certificate
+                    $user = $row->user;
                     return $user->nama ?? 'N/A';
                 })
                 ->addColumn('user_role', function ($row) {
-                    $user = $row->user; // Access the user associated with the certificate
+                    $user = $row->user; 
                     return ucfirst($user->role ?? 'N/A');
                 })
                 ->addColumn('sertifikat', function ($row) {
                     return '<a class="btn btn-success btn-sm mx-1" href="' . route('admin.sertifikat.detail', ['userId' => $row->user_id]) . '">
-                        <i class="fas fa-eye"></i> View
+                        <i class="fas fa-eye"></i> Detail
                     </a>';
                 })
                 ->rawColumns(['sertifikat'])
@@ -55,7 +55,7 @@ class SertifikatController extends Controller
         $user = User::findOrFail($userId);
 
         if ($request->ajax()) {
-            // Fetch sertifikat data only for AJAX requests
+    
             $sertifikat = Sertifikat::where('user_id', $userId)->get();
 
             return DataTables::of($sertifikat)
@@ -64,11 +64,11 @@ class SertifikatController extends Controller
                     $deleteUrl = route('admin.sertifikat.destroy', ['userId' => $userId, 'id' => $row->id]);
 
                     return '
-                    <a href="' . $editUrl . '" class="btn btn-sm btn-primary"  data-id="' . $row->id . '">Edit</a>
+                    <a href="' . $editUrl . '" class="btn btn-sm btn-primary"  data-id="' . $row->id . '"><i class="fas fa-pen"></i></a>
                     <form action="' . $deleteUrl . '" method="POST" style="display:inline;" onsubmit="return confirm(\'Are you sure you want to delete this item?\');">
                         ' . csrf_field() . '
                         <input type="hidden" name="_method" value="DELETE">
-                        <button type="submit" class="btn btn-sm btn-danger delete-button" data-id="' . $row->id . '">Delete</button>
+                        <button type="submit" class="btn btn-sm btn-danger delete-button" data-id="' . $row->id . '"><i class="fas fa-trash"></i></button>
                     </form>';
                 })
                 ->rawColumns(['action'])

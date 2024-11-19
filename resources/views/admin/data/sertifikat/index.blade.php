@@ -17,8 +17,8 @@
                     <i class="fas fa-table me-1"></i> Data Sertifikat
                 </div>
                 <div class="card-body">
-                    <div class="mb-3">
-                        <label for="roleFilter" class="form-label">Filter berdasarkan Role:</label>
+                    <div class="d-flex align-items-center mb-3">
+                        <label for="roleFilter" class="form-label me-2">Role:</label>
                         <select id="roleFilter" class="form-select">
                             <option value="">Semua</option>
                             <option value="Mahasiswa">Mahasiswa</option>
@@ -54,7 +54,7 @@
                         url: "{{ route('admin.sertifikat.index') }}",
                         data: function(d) {
                             d.user_id =
-                            "{{ auth()->id() }}"; // Filter berdasarkan user_id, jika diperlukan
+                            "{{ auth()->id() }}"; 
                             d.role = $('#roleFilter').val(); // Kirimkan filter role jika ada
                         }
                     },

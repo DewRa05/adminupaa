@@ -12,42 +12,36 @@
                 </a>
 
                 <!-- Akun User Section -->
-                <div class="sb-sidenav-menu-heading">Akun User</div>
-                <a class="nav-link {{ request()->is('admin/dosen*') ? 'active' : '' }}" href="charts.html">
-                    <div class="sb-nav-link-icon"><i class="fas fa-chalkboard-teacher"></i></div>
-                    Dosen
-                </a>
-                <a class="nav-link {{ request()->is('admin/mahasiswa*') ? 'active' : '' }}" href="charts.html">
-                    <div class="sb-nav-link-icon"><i class="fas fa-user-graduate"></i></div>
-                    Mahasiswa
-                </a>
-                <a class="nav-link {{ request()->is('admin/umum*') ? 'active' : '' }}" href="charts.html">
+                <a class="nav-link {{ request()->is('admin/user*') ? 'active' : '' }}" href="charts.html">
                     <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
-                    Umum
+                    User
                 </a>
 
                 <!-- Akademik Section -->
                 <div class="sb-sidenav-menu-heading">Akademik</div>
-                <a class="nav-link {{ request()->is('admin/jurusan*') ? 'active' : '' }}" href="{{ route('admin.jurusan.index') }}">
+                <a class="nav-link {{ request()->is('admin/jurusan*') ? 'active' : '' }}"
+                    href="{{ route('admin.jurusan.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-building"></i></div>
                     Jurusan
                 </a>
-                <a class="nav-link {{ request()->is('admin/kelas*') ? 'active' : '' }}" href="{{ route('admin.kelas.index') }}">
+                <a class="nav-link {{ request()->is('admin/kelas*') ? 'active' : '' }}"
+                    href="{{ route('admin.kelas.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-chalkboard"></i></div>
                     Kelas
                 </a>
-                <a class="nav-link {{ request()->is('admin/prodi*') ? 'active' : '' }}" href="{{ route('admin.prodi.index') }}">
+                <a class="nav-link {{ request()->is('admin/prodi*') ? 'active' : '' }}"
+                    href="{{ route('admin.prodi.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-school"></i></div>
                     Prodi
                 </a>
 
                 <!-- Data Section -->
                 <div class="sb-sidenav-menu-heading">Data</div>
-                <a class="nav-link {{ request()->is('admin/grafik*') ? 'active' : '' }}" 
+                <a class="nav-link {{ request()->is('admin/grafik*') ? 'active' : '' }}"
                     href="{{ route('admin.grafik.index') }}">
-                     <div class="sb-nav-link-icon"><i class="fas fa-chart-line"></i></div>
-                     Grafik
-                 </a>                 
+                    <div class="sb-nav-link-icon"><i class="fas fa-chart-line"></i></div>
+                    Grafik
+                </a>
                 <a class="nav-link {{ request()->is('admin/lsp*') ? 'active' : '' }}"
                     href="{{ route('admin.lsp.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-chart-bar"></i></div>
@@ -61,11 +55,13 @@
 
                 <!-- Pelatihan Section -->
                 <div class="sb-sidenav-menu-heading">Pelatihan</div>
-                <a class="nav-link {{ request()->is('admin/kategori*') ? 'active' : '' }}" href="{{ route('admin.kategori.index') }}">
+                <a class="nav-link {{ request()->is('admin/kategori*') ? 'active' : '' }}"
+                    href="{{ route('admin.kategori.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-list-alt"></i></div>
                     Kategori
                 </a>
-                <a class="nav-link {{ request()->is('admin/pelatihan*') ? 'active' : '' }}" href="{{ route('admin.pelatihan.index') }}">
+                <a class="nav-link {{ request()->is('admin/pelatihan*') ? 'active' : '' }}"
+                    href="{{ route('admin.pelatihan.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>
                     List Pelatihan
                 </a>
@@ -106,13 +102,29 @@
             }
         });
 
-        // Close all dropdowns on Dashboard click
+        // Save scroll position before navigating
+        $(window).on('beforeunload', function() {
+            localStorage.setItem('scrollPosition', window.scrollY);
+        });
+
+        // Restore scroll position on page load
+        $(window).on('load', function() {
+            var scrollPosition = localStorage.getItem('scrollPosition');
+            if (scrollPosition) {
+                window.scrollTo(0, scrollPosition);
+            }
+        });
+
+        // Close all dropdowns and reset scroll position on Dashboard click
         $('.nav-link[href="{{ route('admin.dashboard') }}"]').on('click', function() {
             $('.collapse').collapse('hide');
             $('.collapse').each(function() {
                 var targetId = $(this).attr('id');
                 localStorage.setItem(targetId, 'hide');
             });
+
+            // Reset scroll position for Dashboard
+            localStorage.setItem('scrollPosition', 0);
         });
     });
 </script>

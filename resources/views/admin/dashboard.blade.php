@@ -114,7 +114,51 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <i class="fas fa-table me-1"></i>
+                        DataTable Peserta Baru
+                    </div>
+                    <div class="card-body">
+                        <table id="datatablesSimple" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Nama</th>
+                                    <th>Pelatihan</th>
+                                    <th>Status</th>
+                                    <th>Tanggal</th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>Nama</th>
+                                    <th>Pelatihan</th>
+                                    <th>Status</th>
+                                    <th>Tanggal</th>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                @foreach ($latestParticipants as $participant)
+                                    <tr>
+                                        <td>{{ $participant->user->nama ?? 'Tidak Diketahui' }}</td>
+                                        <td>{{ $participant->pelatihan->nama ?? 'Tidak Diketahui' }}</td>
+                                        <td>{{ ucfirst($participant->status_pendaftaran ?? 'Tidak Ada Status') }}</td>
+                                        <td>{{ $participant->created_at->format('d M Y') }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
             </div>
         </div>
     </main>
+
+    @push('script')
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+    <script src="js/datatables-simple-demo.js"></script>
+    @endpush
+    
 @endsection
