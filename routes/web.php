@@ -5,8 +5,10 @@ use App\Http\Controllers\LspController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\ProdiController;
+use App\Http\Controllers\GrafikController;
 use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PelatihanController;
 use App\Http\Controllers\SertifikatController;
 use App\Http\Controllers\KategoriPelatihanController;
@@ -31,7 +33,6 @@ Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 // route unutk register
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
 
-
 // Route untuk menangani proses login
 Route::post('/login', [AuthController::class, 'login']);
 
@@ -41,9 +42,9 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 // Admin
 
 // Route untuk dashboard admin (hanya diakses oleh admin)
-Route::get('/admin/dashboard', function () {
-    return view('admin.dashboard');
-})->middleware(['auth', 'role:admin'])->name('admin.dashboard');
+Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+});
 
 //Profile
 Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
@@ -85,6 +86,12 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
 
 
 //Data
+
+//Grafik
+Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('grafik', [GrafikController::class, 'index'])->name('admin.grafik.index');
+});
+
 //Lsp
 Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
     Route::get('lsp', [LspController::class, 'index'])->name('admin.lsp.index');
@@ -123,9 +130,9 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
 Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
     Route::get('sertifikat', [SertifikatController::class, 'index'])->name('admin.sertifikat.index');
     Route::get('sertifikat/detail/{userId}', [SertifikatController::class, 'detail'])->name('admin.sertifikat.detail');
-    Route::get('sertifikat/create/{userId}', [SertifikatController::class, 'create'])->name('admin.sertifikat.create'); 
-    Route::post('sertifikat/store/{userId}', [SertifikatController::class, 'store'])->name('admin.sertifikat.store'); 
+    Route::get('sertifikat/create/{userId}', [SertifikatController::class, 'create'])->name('admin.sertifikat.create');
+    Route::post('sertifikat/store/{userId}', [SertifikatController::class, 'store'])->name('admin.sertifikat.store');
     Route::get('sertifikat/{userId}/edit/{id}', [SertifikatController::class, 'edit'])->name('admin.sertifikat.edit');
     Route::put('sertifikat/{userId}/update/{id}', [SertifikatController::class, 'update'])->name('admin.sertifikat.update');
-    Route::delete('sertifikat/{id}', [SertifikatController::class, 'destroy'])->name('admin.sertifikat.destroy'); 
+    Route::delete('sertifikat/{id}', [SertifikatController::class, 'destroy'])->name('admin.sertifikat.destroy');
 });

@@ -43,6 +43,11 @@
 
                 <!-- Data Section -->
                 <div class="sb-sidenav-menu-heading">Data</div>
+                <a class="nav-link {{ request()->is('admin/grafik*') ? 'active' : '' }}" 
+                    href="{{ route('admin.grafik.index') }}">
+                     <div class="sb-nav-link-icon"><i class="fas fa-chart-line"></i></div>
+                     Grafik
+                 </a>                 
                 <a class="nav-link {{ request()->is('admin/lsp*') ? 'active' : '' }}"
                     href="{{ route('admin.lsp.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-chart-bar"></i></div>

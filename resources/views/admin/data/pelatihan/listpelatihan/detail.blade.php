@@ -26,7 +26,6 @@
                                 class="img-fluid shadow-sm rounded" style="max-height: 400px; object-fit: cover;">
                         </div>
 
-                        <!-- Right Side: Training Details -->
                         <div class="col-md-6">
                             <h3 class="mb-3 text-dark"><strong>{{ $pelatihan->nama }}</strong></h3>
                             <p><i class="fas fa-building me-2"></i><strong>LSP:</strong> {{ $pelatihan->lsp->nama }}</p>

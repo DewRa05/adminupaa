@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Storage;
 use App\Models\Lsp;
 use App\Models\Pelatihan;
 use Illuminate\Http\Request;
