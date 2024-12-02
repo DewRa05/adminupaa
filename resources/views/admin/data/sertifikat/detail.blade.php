@@ -33,6 +33,7 @@
                     <thead>
                         <tr>
                             <th class="text-center">ID</th>
+                            <th class="text-start">Nomor Sertifikat</th>
                             <th class="text-start">Nama Pelatihan</th>
                             <th class="text-center">Tanggal Berlaku</th>
                             <th class="text-center">Tanggal Berakhir</th>
@@ -59,6 +60,11 @@
                             data: 'id',
                             name: 'id',
                             className: 'text-center'
+                        },
+                        {
+                            data: 'no_sertifikat',
+                            name: 'no_sertifikat',
+                            className: 'text-start'
                         },
                         {
                             data: 'nama_pelatihan',

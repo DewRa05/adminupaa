@@ -61,31 +61,36 @@ class PelatihanController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama'                  => 'required|string|max:125|unique:pelatihan,nama',
-            'jenis_pelatihan'       => 'required|string|max:125',
-            'deskripsi'             => 'required|string',
-            'tanggal_pendaftaran'   => 'required|date',
-            'berakhir_pendaftaran'  => 'required|date|after_or_equal:tanggal_pendaftaran',
-            'harga'                 => 'required|numeric',
-            'kuota'                 => 'required|integer',
-            'lsp_id'                => 'required|exists:lsp,id',
-            'kategori_id'           => 'required|exists:kategori,id',
-            'gambar'                => 'nullable|image|mimes:jpg,png|max:2048',
+            'nama'                      => 'required|string|max:125|unique:pelatihan,nama',
+            'jenis_pelatihan'           => 'required|string|max:125',
+            'deskripsi'                 => 'required|string',
+            'tanggal_pendaftaran'       => 'required|date',
+            'berakhir_pendaftaran'      => 'required|date|after_or_equal:tanggal_pendaftaran',
+            'jadwal_pelatihan_mulai'    => 'required|date',
+            'jadwal_pelatihan_selesai'  => 'required|date|after_or_equal:jadwal_pelatihan_mulai',
+            'harga'                     => 'required|numeric',
+            'kuota'                     => 'required|integer',
+            'lsp_id'                    => 'required|exists:lsp,id',
+            'kategori_id'               => 'required|exists:kategori,id',
+            'gambar'                    => 'nullable|image|mimes:jpg,png|max:2048',
         ], [
-            'nama.required'                         => 'Nama pelatihan wajib diisi.',
-            'nama.unique'                    => 'Nama pelatihan sudah ada.',
-            'jenis_pelatihan.required'              => 'Jenis pelatihan wajib diisi.',
-            'deskripsi.required'                    => 'Deskripsi wajib diisi.',
-            'tanggal_pendaftaran.required'          => 'Tanggal pendaftaran wajib diisi.',
-            'berakhir_pendaftaran.required'         => 'Tanggal berakhir pendaftaran wajib diisi.',
-            'berakhir_pendaftaran.after_or_equal'   => 'Tanggal berakhir pendaftaran harus lebih besar atau sama dengan tanggal pendaftaran.',
-            'harga.required'                        => 'Harga pelatihan wajib diisi.',
-            'kuota.required'                        => 'Kuota pelatihan wajib diisi.',
-            'lsp_id.required'                       => 'LSP wajib dipilih.',
-            'kategori_id.required'                  => 'Kategori wajib dipilih.',
-            'gambar.image'                          => 'File gambar harus berupa gambar.',
-            'gambar.mimes'                          => 'Gambar harus berformat JPG atau PNG.',
-            'gambar.max'                            => 'Ukuran gambar maksimal 2MB.',
+            'nama.required'                             => 'Nama pelatihan wajib diisi.',
+            'nama.unique'                               => 'Nama pelatihan sudah ada.',
+            'jenis_pelatihan.required'                  => 'Jenis pelatihan wajib diisi.',
+            'deskripsi.required'                        => 'Deskripsi wajib diisi.',
+            'tanggal_pendaftaran.required'              => 'Tanggal pendaftaran wajib diisi.',
+            'berakhir_pendaftaran.required'             => 'Tanggal berakhir pendaftaran wajib diisi.',
+            'berakhir_pendaftaran.after_or_equal'       => 'Tanggal berakhir pendaftaran harus lebih besar atau sama dengan tanggal pendaftaran.',
+            'jadwal_pelatihan_mulai.required'           => 'Jadwal pelatihan wajib diisi.',
+            'jadwal_pelatihan_selesai.required'         => 'Jadwal selesai pelatihan wajib diisi.',
+            'jadwal_pelatihan_selesai.after_or_equal'   => 'Jadwal selesai pelatihan harus lebih besar atau sama dengan tanggal pendaftaran.',
+            'harga.required'                            => 'Harga pelatihan wajib diisi.',
+            'kuota.required'                            => 'Kuota pelatihan wajib diisi.',
+            'lsp_id.required'                           => 'LSP wajib dipilih.',
+            'kategori_id.required'                      => 'Kategori wajib dipilih.',
+            'gambar.image'                              => 'File gambar harus berupa gambar.',
+            'gambar.mimes'                              => 'Gambar harus berformat JPG atau PNG.',
+            'gambar.max'                                => 'Ukuran gambar maksimal 2MB.',
         ]);        
 
         $data = $request->except('gambar');
@@ -116,30 +121,35 @@ class PelatihanController extends Controller
         $pelatihan = Pelatihan::findOrFail($id);
 
         $request->validate([
-            'nama'                  => 'required|string|max:125',
-            'jenis_pelatihan'       => 'required|string|max:125',
-            'deskripsi'             => 'required|string',
-            'tanggal_pendaftaran'   => 'required|date',
-            'berakhir_pendaftaran'  => 'required|date|after_or_equal:tanggal_pendaftaran',
-            'harga'                 => 'required|numeric',
-            'kuota'                 => 'required|integer',
-            'lsp_id'                => 'required|exists:lsp,id',
-            'kategori_id'           => 'required|exists:kategori,id',
-            'gambar'                => 'nullable|image|mimes:jpg,png|max:2048',
+            'nama'                      => 'required|string|max:125',
+            'jenis_pelatihan'           => 'required|string|max:125',
+            'deskripsi'                 => 'required|string',
+            'tanggal_pendaftaran'       => 'required|date',
+            'berakhir_pendaftaran'      => 'required|date|after_or_equal:tanggal_pendaftaran',
+            'jadwal_pelatihan_mulai'    => 'required|date',
+            'jadwal_pelatihan_selesai'  => 'required|date|after_or_equal:jadwal_pelatihan_mulai',
+            'harga'                     => 'required|numeric',
+            'kuota'                     => 'required|integer',
+            'lsp_id'                    => 'required|exists:lsp,id',
+            'kategori_id'               => 'required|exists:kategori,id',
+            'gambar'                    => 'nullable|image|mimes:jpg,png|max:2048',
         ], [
-            'nama.required'                         => 'Nama pelatihan wajib diisi.',
-            'jenis_pelatihan.required'              => 'Jenis pelatihan wajib diisi.',
-            'deskripsi.required'                    => 'Deskripsi wajib diisi.',
-            'tanggal_pendaftaran.required'          => 'Tanggal pendaftaran wajib diisi.',
-            'berakhir_pendaftaran.required'         => 'Tanggal berakhir pendaftaran wajib diisi.',
-            'berakhir_pendaftaran.after_or_equal'   => 'Tanggal berakhir pendaftaran harus lebih besar atau sama dengan tanggal pendaftaran.',
-            'harga.required'                        => 'Harga pelatihan wajib diisi.',
-            'kuota.required'                        => 'Kuota pelatihan wajib diisi.',
-            'lsp_id.required'                       => 'LSP wajib dipilih.',
-            'kategori_id.required'                  => 'Kategori wajib dipilih.',
-            'gambar.image'                          => 'File gambar harus berupa gambar.',
-            'gambar.mimes'                          => 'Gambar harus berformat JPG atau PNG.',
-            'gambar.max'                            => 'Ukuran gambar maksimal 2MB.',
+            'nama.required'                             => 'Nama pelatihan wajib diisi.',
+            'jenis_pelatihan.required'                  => 'Jenis pelatihan wajib diisi.',
+            'deskripsi.required'                        => 'Deskripsi wajib diisi.',
+            'tanggal_pendaftaran.required'              => 'Tanggal pendaftaran wajib diisi.',
+            'berakhir_pendaftaran.required'             => 'Tanggal berakhir pendaftaran wajib diisi.',
+            'berakhir_pendaftaran.after_or_equal'       => 'Tanggal berakhir pendaftaran harus lebih besar atau sama dengan tanggal pendaftaran.',
+            'jadwal_pelatihan_mulai.required'           => 'Jadwal pelatihan wajib diisi.',
+            'jadwal_pelatihan_selesai.required'         => 'Jadwal selesai pelatihan wajib diisi.',
+            'jadwal_pelatihan_selesai.after_or_equal'   => 'Jadwal selesai pelatihan harus lebih besar atau sama dengan tanggal pendaftaran.',
+            'harga.required'                            => 'Harga pelatihan wajib diisi.',
+            'kuota.required'                            => 'Kuota pelatihan wajib diisi.',
+            'lsp_id.required'                           => 'LSP wajib dipilih.',
+            'kategori_id.required'                      => 'Kategori wajib dipilih.',
+            'gambar.image'                              => 'File gambar harus berupa gambar.',
+            'gambar.mimes'                              => 'Gambar harus berformat JPG atau PNG.',
+            'gambar.max'                                => 'Ukuran gambar maksimal 2MB.',
         ]);        
 
         $data = $request->except('gambar');
@@ -187,6 +197,24 @@ class PelatihanController extends Controller
         $request->validate([
             'id'                 => 'required|exists:pelatihan_user,id',
             'status_pendaftaran' => 'required|in:menunggu,diterima,ditolak',
+        ]);
+
+        try {
+            $registration = PelatihanUser::findOrFail($request->id);
+            $registration->status_pendaftaran = $request->status_pendaftaran;
+            $registration->save();
+
+            return response()->json(['success' => true, 'message' => 'Status updated successfully.']);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => 'Failed to update status.'], 500);
+        }
+    }
+
+    public function updateStatusLulus(Request $request)
+    {
+        $request->validate([
+            'id'                 => 'required|exists:pelatihan_user,id',
+            'status_kelulusan'   => 'required|in:menunggu,diterima,ditolak',
         ]);
 
         try {

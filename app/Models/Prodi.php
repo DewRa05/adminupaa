@@ -9,6 +9,8 @@ class Prodi extends Model
 {
     use HasFactory;
 
+    protected $table = 'prodis';
+
     protected $fillable = ['nama_prodi','jurusan_id','nama_jurusan']; 
 
     public function kelas()

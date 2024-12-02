@@ -12,7 +12,6 @@ class ProdiSeeder extends Seeder
      */
     public function run(): void
     {
-        // List prodi yang akan diinsert
         $prodiList = [
             ['nama_prodi' => 'D3 TEKNIK MESIN', 'jurusan_id' => 4],
             ['nama_prodi' => 'D3 TEKNIK PENDINGIN DAN TATA UDARA', 'jurusan_id' => 4],
@@ -24,11 +23,10 @@ class ProdiSeeder extends Seeder
             ['nama_prodi' => 'D4 SISTEM INFORMASI KOTA CERDAS', 'jurusan_id' => 1],
         ];
 
-        // Menggunakan firstOrCreate untuk menghindari duplikasi
         foreach ($prodiList as $prodi) {
             Prodi::firstOrCreate(
-                ['nama_prodi' => $prodi['nama_prodi']], // Kondisi cek duplikasi
-                ['jurusan_id' => $prodi['jurusan_id']]  // Data yang akan diisi jika tidak ada duplikasi
+                ['nama_prodi' => $prodi['nama_prodi']],
+                ['jurusan_id' => $prodi['jurusan_id']]
             );
         }
     }

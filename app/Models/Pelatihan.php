@@ -19,6 +19,8 @@ class Pelatihan extends Model
         'deskripsi',
         'tanggal_pendaftaran',
         'berakhir_pendaftaran',
+        'jadwal_pelatihan_mulai',
+        'jadwal_pelatihan_selesai',
         'harga',
         'kuota',
         'pembimbing',

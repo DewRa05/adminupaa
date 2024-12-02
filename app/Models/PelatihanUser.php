@@ -16,6 +16,7 @@ class PelatihanUser extends Model
         'pelatihan_id',
         'bukti_pembayaran',
         'status_pendaftaran',
+        'status_kelulusan,'
     ];
 
     /**

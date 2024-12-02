@@ -95,7 +95,6 @@
                             name: 'prodi.id',
                             defaultContent: 'Tidak Ada',
                             className: 'text-start'
-
                         },
                         {
                             data: 'nama_prodi',

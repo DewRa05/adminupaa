@@ -24,20 +24,20 @@ use App\Http\Controllers\KategoriPelatihanController;
 |
 */
 
+// Halaman Indax
 route::get('/', function () {
     return view('welcome');
 });
 
-// Route untuk menampilkan halaman login
-Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 // route unutk register
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
 
-// Route untuk menangani proses login
+// Route untuk menampilkan halaman login
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 
 // Route untuk logout admin dan user
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Admin
 
@@ -51,6 +51,7 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
     Route::get('admin/profile', [ProfileController::class, 'index'])->name('admin.profile.index');
     Route::put('admin/profile/{id}', [ProfileController::class, 'update'])->name('admin.profile.update');
 });
+
 
 // Akademik
 
@@ -74,7 +75,7 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
     Route::delete('prodi/{id}', [ProdiController::class, 'destroy'])->name('admin.prodi.destroy');
 });
 
-//Prodi
+// Kelas
 Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
     Route::get('kelas', [KelasController::class, 'index'])->name('admin.kelas.index');
     Route::get('kelas/create', [KelasController::class, 'create'])->name('admin.kelas.create');
@@ -102,7 +103,19 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
     Route::delete('lsp/{id}', [LspController::class, 'destroy'])->name('admin.lsp.destroy');
 });
 
+//Sertifikat
+Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('sertifikat', [SertifikatController::class, 'index'])->name('admin.sertifikat.index');
+    Route::get('sertifikat/detail/{userId}', [SertifikatController::class, 'detail'])->name('admin.sertifikat.detail');
+    Route::get('sertifikat/create/{userId}', [SertifikatController::class, 'create'])->name('admin.sertifikat.create');
+    Route::post('sertifikat/store/{userId}', [SertifikatController::class, 'store'])->name('admin.sertifikat.store');
+    Route::get('sertifikat/{userId}/edit/{id}', [SertifikatController::class, 'edit'])->name('admin.sertifikat.edit');
+    Route::put('sertifikat/{userId}/update/{id}', [SertifikatController::class, 'update'])->name('admin.sertifikat.update');
+    Route::delete('sertifikat/{id}', [SertifikatController::class, 'destroy'])->name('admin.sertifikat.destroy');
+});
+
 //Pelatihan
+
 //kategori pelatihan
 Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
     Route::get('kategori', [KategoriPelatihanController::class, 'index'])->name('admin.kategori.index');
@@ -126,13 +139,4 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
     Route::post('pelatihan/update-status', [PelatihanController::class, 'updateStatus'])->name('admin.pelatihan.updateStatus');
 });
 
-//Sertifikat
-Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('sertifikat', [SertifikatController::class, 'index'])->name('admin.sertifikat.index');
-    Route::get('sertifikat/detail/{userId}', [SertifikatController::class, 'detail'])->name('admin.sertifikat.detail');
-    Route::get('sertifikat/create/{userId}', [SertifikatController::class, 'create'])->name('admin.sertifikat.create');
-    Route::post('sertifikat/store/{userId}', [SertifikatController::class, 'store'])->name('admin.sertifikat.store');
-    Route::get('sertifikat/{userId}/edit/{id}', [SertifikatController::class, 'edit'])->name('admin.sertifikat.edit');
-    Route::put('sertifikat/{userId}/update/{id}', [SertifikatController::class, 'update'])->name('admin.sertifikat.update');
-    Route::delete('sertifikat/{id}', [SertifikatController::class, 'destroy'])->name('admin.sertifikat.destroy');
-});
+

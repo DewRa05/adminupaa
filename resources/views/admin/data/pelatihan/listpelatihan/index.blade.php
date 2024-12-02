@@ -55,6 +55,8 @@
                                     <th class="text-start text-nowrap">Deskripsi</th>
                                     <th class="text-start">Mulai Pendaftaran</th>
                                     <th class="text-start">Berakhir Pendaftaran</th>
+                                    <th class="text-start">Mulai Pelatihan</th>
+                                    <th class="text-start">Berakhir Pelatihan</th>
                                     <th class="text-start">Harga</th>
                                     <th class="text-start">Kuota</th>
                                     <th class="text-start">LSP</th>
@@ -120,6 +122,16 @@
                         {
                             data: 'berakhir_pendaftaran',
                             name: 'berakhir_pendaftaran',
+                            className: 'text-start'
+                        },
+                        {
+                            data: 'jadwal_pelatihan_mulai',
+                            name: 'jadwal_pelatihan_mulai',
+                            className: 'text-start'
+                        },
+                        {
+                            data: 'jadwal_pelatihan_selesai',
+                            name: 'jadwal_pelatihan_selesai',
                             className: 'text-start'
                         },
                         {

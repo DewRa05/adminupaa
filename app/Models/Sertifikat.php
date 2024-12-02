@@ -11,6 +11,7 @@ class Sertifikat extends Model
     protected $table = 'sertifikats';
     protected $fillable = [
         'user_id',
+        'no_sertifikat',
         'nama_pelatihan',
         'tanggal_berlaku',
         'tanggal_berakhir',

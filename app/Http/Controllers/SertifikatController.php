@@ -91,10 +91,27 @@ class SertifikatController extends Controller
     {
         $user = User::findOrFail($userId);
         $request->validate([
+            'no_sertifikat'     => 'required|numeric',
             'nama_pelatihan'    => 'required|string|max:255',
             'tanggal_berlaku'   => 'required|date',
             'tanggal_berakhir'  => 'required|date|after_or_equal:tanggal_berlaku',
-            'sertifikat_file'   => 'nullable|file|mimes:pdf,doc,docx|max:2048',
+            'sertifikat_file'   => 'required|file|mimes:pdf,doc,docx|max:2048',
+        ],
+        [
+            'no_sertifikat.required'          => 'Nomor sertifikat harus diisi.',
+            'no_sertifikat.numeric'           => 'Nomor sertifikat harus berupa angka.',
+            'nama_pelatihan.required'         => 'Nama pelatihan harus diisi.',
+            'nama_pelatihan.string'           => 'Nama pelatihan harus berupa teks.',
+            'nama_pelatihan.max'              => 'Nama pelatihan tidak boleh lebih dari 255 karakter.',
+            'tanggal_berlaku.required'        => 'Tanggal berlaku harus diisi.',
+            'tanggal_berlaku.date'            => 'Tanggal berlaku harus berupa format tanggal yang valid.',
+            'tanggal_berakhir.required'       => 'Tanggal berakhir harus diisi.',
+            'tanggal_berakhir.date'           => 'Tanggal berakhir harus berupa format tanggal yang valid.',
+            'tanggal_berakhir.after_or_equal' => 'Tanggal berakhir harus sama atau setelah tanggal berlaku.',
+            'sertifikat_file.required'        => 'Sertifikat harus diisi.',
+            'sertifikat_file.file'            => 'Sertifikat harus berupa file yang valid.',
+            'sertifikat_file.mimes'           => 'File sertifikat harus memiliki format PDF, DOC, atau DOCX.',
+            'sertifikat_file.max'             => 'Ukuran file sertifikat tidak boleh lebih dari 2 MB.',
         ]);
 
         $sertifikat = $request->except('sertifikat_file');
@@ -135,14 +152,31 @@ class SertifikatController extends Controller
 
         // Validate the incoming request
         $request->validate([
+            'no_sertifikat'     => 'required|numeric',
             'nama_pelatihan'    => 'required|string|max:255',
             'tanggal_berlaku'   => 'required|date',
             'tanggal_berakhir'  => 'required|date|after_or_equal:tanggal_berlaku',
-            'sertifikat_file'   => 'nullable|file|mimes:pdf,doc,docx|max:2048',
+            'sertifikat_file'   => 'requird|file|mimes:pdf,doc,docx|max:2048',
+        ], [
+            'no_sertifikat.required'          => 'Nomor sertifikat harus diisi.',
+            'no_sertifikat.numeric'           => 'Nomor sertifikat harus berupa angka.',
+            'nama_pelatihan.required'         => 'Nama pelatihan harus diisi.',
+            'nama_pelatihan.string'           => 'Nama pelatihan harus berupa teks.',
+            'nama_pelatihan.max'              => 'Nama pelatihan tidak boleh lebih dari 255 karakter.',
+            'tanggal_berlaku.required'        => 'Tanggal berlaku harus diisi.',
+            'tanggal_berlaku.date'            => 'Tanggal berlaku harus berupa format tanggal yang valid.',
+            'tanggal_berakhir.required'       => 'Tanggal berakhir harus diisi.',
+            'tanggal_berakhir.date'           => 'Tanggal berakhir harus berupa format tanggal yang valid.',
+            'tanggal_berakhir.after_or_equal' => 'Tanggal berakhir harus sama atau setelah tanggal berlaku.',
+            'sertifikat_file.requird'         => 'Sertifikat harus berupa diisi.',
+            'sertifikat_file.file'            => 'Sertifikat harus berupa file yang valid.',
+            'sertifikat_file.mimes'           => 'File sertifikat harus memiliki format PDF, DOC, atau DOCX.',
+            'sertifikat_file.max'             => 'Ukuran file sertifikat tidak boleh lebih dari 2 MB.',
         ]);
 
         // Prepare data to update
         $data = [
+            'no_sertifikat'    => $request->no_sertifikat,
             'nama_pelatihan'   => $request->nama_pelatihan,
             'tanggal_berlaku'  => $request->tanggal_berlaku,
             'tanggal_berakhir' => $request->tanggal_berakhir,
